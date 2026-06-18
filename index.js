@@ -9,10 +9,19 @@ initializeDatabase()
 
 app.use(express.json())
 
+const cors = require("cors");
+const corsOptions = {
+  origin: "*",
+  credentials: true,
+  optionSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+
 
 
 app.get("/",(req,res)=>{
-    res.send("Hello, From Express Server.")
+    res.send("Hello, From Books Express Server.")
 })
 
 app.get("/books", async (req, res) => {
@@ -191,7 +200,6 @@ app.delete("/deleteBook/:bookId",async(req,res)=>{
         } else {
             return res.status(200).json({message:"book deleted successfuly",deletedBook:deletedBook})
         }
-
     } catch(err) {
         return res.status(500).json({error:"an error occured while deleting movie"})
     }
