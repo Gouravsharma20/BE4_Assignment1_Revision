@@ -184,7 +184,7 @@ app.post("/updateBook/:title", async(req,res)=>{
 
 async function deleteBookByID(ID) {
     try {
-        const deleteBook = await Books.findByIdAndUpdate(ID)
+        const deleteBook = await Books.findByIdAndDelete(ID)
         return deleteBook
     } catch(err) {
         console.log("an error occured while deleting books")
